@@ -23,7 +23,8 @@ const planeSchema = new Schema({
     type: String,
     required: true,
   },
-  person: {
+  name: {
+    //person from input
     type: String,
     required: true,
   },

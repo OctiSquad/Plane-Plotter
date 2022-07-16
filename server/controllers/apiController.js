@@ -1,20 +1,76 @@
 //----------Initial Setup - Require Model----------
 const Plane = require('../models/planeModels');
+const APIKEY = '3bea41ccbcf41df820d44466a53faf43';
+const APIURI = 'http://api.aviationstack.com/v1/';
+// const got = require('got');
+// const { pipeline } = require('stream');
+const axios = require('axios');
+
+// Real-Time Flights
+
+// https://api.aviationstack.com/v1/flights
+// ? access_key = YOUR_ACCESS_KEY
+// `${APIURI}flights?access_key=${APIKEY}`
+
+// // optional parameters:
+
+// & limit = 100
+// & offset = 0
+// & callback = MY_CALLBACK
+// // more parameters available
+
+// async fetchAPI (req, res) {
+//   const dataStream = got.stream({
+//       uri: 'http://www.giantbomb.com/api/search',
+//       qs: {
+//         api_key: '123456',
+//         query: 'World of Warcraft: Legion'
+//       }
+//   });
+//   pipeline(dataStream, res, (err) => {
+//       if (err) {
+//           console.log(err);
+//           res.sendStatus(500);
+//       }
+//   });
+// });
+
+// flights > aircraft > registration = flights[aircraft][registration]
 
 const apiController = {
+  async fetchAPI(req, res, next) {
+    axios
+      .get(`${APIURI}flights?access_key=${APIKEY}`)
+      .then((response) => {
+        const apiResponse = response.data;
+
+        if (Array.isArray(apiResponse['data'])) {
+          apiResponse['data'].forEach((flight) => {
+            // if (!flight['live']['is_ground']) {
+            console.log(
+              `${flight['airline']['name']} flight ${flight['flight']['iata']}`,
+              `from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
+              `to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air. }`
+            );
+            // }
+          });
+        }
+        res.locals.fetched = apiResponse;
+        return next();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+
   async createData(req, res, next) {
     try {
-      const {
-        registration,
-        person,
-        flightId,
-        departureAirport,
-        arrivalAirport,
-      } = req.body;
+      const { registration, name, flightId, departureAirport, arrivalAirport } =
+        req.body;
       console.log(req.body);
       const plane = await Plane.create({
         registration,
-        person,
+        name,
         flightId,
         departureAirport,
         arrivalAirport,
@@ -28,8 +84,8 @@ const apiController = {
 
   async getPlane(req, res, next) {
     try {
-      const planeinDB = await Plane.find({ person: req.params.name });
-      if (!planeinDB[0]) throw new Error();
+      const planeinDB = await Plane.find({ name: req.params.name });
+      if (!planeinDB) throw new Error();
       res.locals.planeinDB = planeinDB;
       return next();
     } catch (err) {
@@ -39,11 +95,11 @@ const apiController = {
 
   async updatePlane(req, res, next) {
     try {
-      const { person } = req.params;
-      const newPerson = req.body.person;
+      const { name } = req.params;
+      const newName = req.body.name;
       const planeinDB = await Plane.findOneAndUpdate(
-        { person: person },
-        { person: newPerson },
+        { name: name },
+        { name: newName },
         { new: true }
       );
       res.locals.updatedPlane = planeinDB;
@@ -55,9 +111,9 @@ const apiController = {
 
   async deletePlane(req, res, next) {
     try {
-      const { person } = req.params;
-      const planeinDB = await Plane.findOneAndDelete({ person: person });
-      res.locals.deletedPerson = planeinDB;
+      const { name } = req.params;
+      const planeinDB = await Plane.findOneAndDelete({ name: name });
+      res.locals.deletedName = planeinDB;
       return next();
     } catch (err) {
       return next(err);
