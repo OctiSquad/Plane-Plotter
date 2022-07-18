@@ -4,15 +4,14 @@ const Plane = require('./Model');
 const Controller = {
   async createData(req, res, next) {
     try {
-      const { registration, name, flightId, departureAirport, arrivalAirport } =
-        req.body;
+      const { registration, name, date, departure, arrival } = req.body;
       console.log(req.body);
       const plane = await Plane.create({
         registration,
         name,
-        flightId,
-        departureAirport,
-        arrivalAirport,
+        date,
+        departure,
+        arrival,
       });
       res.locals.newPlane = plane;
       return next();

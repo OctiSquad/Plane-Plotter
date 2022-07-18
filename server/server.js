@@ -16,7 +16,7 @@ app.use(express.json());
 //----------Router----------
 app.use('/api', apiRouter);
 
-Router.get('/planes/:id', Controller.find, (req, res) => {
+apiRouter.get('/planes/:id', Controller.find, (req, res) => {
   res.status(200).send(res.locals.list);
 });
 
