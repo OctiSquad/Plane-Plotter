@@ -10,12 +10,12 @@ export const apiSlice = createApi({
     getPlanes: builder.query({
       query: (input) => `planes/${input}`,
     }),
-    getPlanesByRegistration: builder.query({
-      query: (registration) => `planes/${registration}`
-    }),
-    getPlanesByName: builder.query({
-      query: (name) => `planes/${name}`
-    })
+    // getPlanesByRegistration: builder.query({
+    //   query: (registration) => `planes/${registration}`
+    // }),
+    // getPlanesByName: builder.query({
+    //   query: (name) => `planes/${name}`
+    // })
   })
 })
 

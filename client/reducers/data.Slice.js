@@ -9,14 +9,14 @@ export const dataSlice = createSlice({
   initialState,
   reducers: {
     submitRequest: (state, action) => {
-      console.log(action.payload)
+      // console.log(action.payload)
       const newState = (Object.assign({}, {...state}, { userInput: action.payload }))
       return {
         ...state, ...newState
       }
     },
     // insert other reducer functionality here
-      reset: (state) => {return {...state, ...initialState}}
+    reset: (state) => {return {...state, ...initialState}}
   }
 })
 

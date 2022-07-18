@@ -9,15 +9,14 @@ import dataReducer from './reducers/data.Slice'
 
 export const store = configureStore({
   reducer: {
-    // ensures that caching reducer is added in the right place
     data: dataReducer,
+    // ensures that caching reducer is added in the right place
     [apiSlice.reducerPath]: apiSlice.reducer
-    
   },
   middleware: (getDefaultMiddleware) =>
     // enables caching, invalidation, polling, and other useful rtk-query features
-    getDefaultMiddleware({serializableCheck: false}).concat(apiSlice.middleware)
-  // devTools: false,
+    getDefaultMiddleware().concat(apiSlice.middleware),
+  devTools: true,
   // enhancers: [devToolsEnhancer({ realtime: true })],
 })
 
