@@ -7,9 +7,9 @@ let PlaneEntry = ({ plane }) => {
   
   return (
     <div id="singleEntry" key={plane.id}>
-      <h4>{plane.name}</h4>
+      <h3>{plane.name}</h3>
       <div>
-        <p>{plane.date}: {plane.name} flew on their plane, tail number {plane.registration}, from {plane.departure} to {plane.arrival}.</p>
+        <p>{plane.date}: {plane.name} flew in a plane w/ the tail number {plane.registration}, from {plane.departure} to {plane.arrival}.</p>
       </div>
     </div>
   )};

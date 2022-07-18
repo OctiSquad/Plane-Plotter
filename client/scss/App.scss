@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap&family=Montserrat:wght@100&display=swap');
+// @import url('https://fonts.googleapis.com/css2?');
+// font-family: 'Dosis', sans-serif;
+// font-family: 'PT Serif', serif;
+// font-family: 'Prompt', sans-serif;
+// font-family: 'Josefin Sans', sans-serif;
+
+body {
+  // background: #000000
+  background: rgb(40, 4, 80);
+  color: whitesmoke;
+}
+
+form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 5px; 
+  border-style:solid;
+  border-color: white;
+  background: rgb(0, 0, 0);
+}
+
+#inputField{
+  width: 100%;
+  border-style:none;
+}
+
+.titleBar{
+  font-family: 'Inconsolata', monospace;;
+  display: flex;
+  justify-content: center;
+  // font-family: 'Josefin Sans', sans-serif;
+  font-size: 150%;
+  font-style: initial;
+  color: white;
+}
+
+#page{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputBox{
+  margin-left: 35%;
+  margin-right: 35%;
+  justify-content: center;
+}
+
+.inputDiv{
+  display: flex;
+  flex-direction: column;
+}
+
+#input-field{
+  align-self: flex-end;
+  // marg
+  width: 150%
+}
+
+.displayBox{
+  border: 5px; 
+  border-style:solid;
+  border-color: white;
+  padding: 15px;
+  border-style: groove;
+  background: rgb(0, 0, 0);
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: .3%;
+}
+
+input{
+  border-radius: 8px;
+  background-color: black;
+  color: white;
+  padding-left: 1%;
+  padding-right: 1%;
+  margin: 1.5%;
+}
+
+#singleEntry{
+  border: 2px; 
+  padding-right: 2%;
+  padding-left: 2%;
+  border-style:solid;
+  border-color: white;
+}
