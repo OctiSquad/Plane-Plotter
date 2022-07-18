@@ -1,7 +1,10 @@
+import * as React from 'react'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { submitRequest } from '../reducers/data.Slice';
-import * as React from 'react'
+
+import '../scss/InputBox.scss'
+import buttonStyle from '../scss/button.scss'
 
 function InputBox () {
 
@@ -26,6 +29,7 @@ function InputBox () {
   }
 
   return (  
+    <>
     <div className="inputDiv">
       <form className="inputAndSubmit" onSubmit={(e) => {
         handleSubmit(onSubmit)(e)
@@ -33,19 +37,22 @@ function InputBox () {
         <input
           id="inputField"
           type="text"
-          placeholder="ex: Bob Barker, N927VA, T-Pain" 
+          placeholder="ex: T-Pain, N340PK (T-Plane) " 
           value={input}
           onChange={handleFieldInputChange}
           />
       </form>
-      <button
-        id="submitInput" type="submit" onClick={(e) => {
-        e.preventDefault();
-        deliverSubmit();
-        } }
-        >Find that Metal Sky Bird!
-      </button>
     </div>
+  <div className="buttonBox">
+    <button
+    id="submitInput" type="submit" className = "btn-25" onClick={(e) => {
+    e.preventDefault();
+    deliverSubmit();
+    } }
+    >Find a Plane
+    </button>
+  </div>
+  </>
   )
 }
 

@@ -15,8 +15,9 @@ function App(){
   // functionality with scope limited exclusively to the app page
 
   return (
+    <>
+    <div className="titleBar"><h1>Public People's Plane Plots</h1></div>
     <div id="page">
-      <h3>Particular Planes + People</h3>
       <div id="inputBox" className="inputBox">
         <InputBox />
       </div>
@@ -24,6 +25,7 @@ function App(){
         <DisplayBox />
       </div>
     </div>
+    </>
 )};
 
 export default App;
