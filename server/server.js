@@ -4,23 +4,34 @@ const express = require('express');
 const apiRouter = require('./routes/apiRouter');
 
 const app = express();
-const PORT = 3000;
 
-app.use(express.json());
+const PORT = 3000;
+const Router = express.Router();
+const Controller = require('./controllers');
+
+// parse request body
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //----------Router----------
 app.use('/api', apiRouter);
 
-// catch-all route handler for any requests to an unknown route
-app.use((req, res) => res.status(404).send('lol 404'));
+Router.get('/planes/:id', Controller.find, (req, res) => {
+  res.status(200).send(res.locals.list);
+});
+
+// catch-all route handler
+app.use((req, res) =>
+  res.status(404).send('just plane could not find it :( (404)')
+);
+// based express error handler <3
 
 //----------Global Error Handler----------
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
-    message: { err: 'An error occurred' },
+    message: err.message,
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);

@@ -1,5 +1,5 @@
 //----------Initial Setup - Require Model----------
-const Plane = require('../models/planeModels');
+const Plane = require('../Model');
 const APIKEY = '3bea41ccbcf41df820d44466a53faf43';
 const APIURI = 'http://api.aviationstack.com/v1/';
 const axios = require('axios');
