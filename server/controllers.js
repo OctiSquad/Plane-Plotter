@@ -34,7 +34,7 @@ Controller.find = (req, res, next) => {
   Plane.find({$or: [ { name: filter }, {registration: filter} ]}, (err, results) => {
     // Plane.find({ name: filter }), (err,results) =>{
     if (err) return next(err => 'Error in Controller.find: ' + JSON.stringify(err));
-    if (!results) res.locals.list = {response: 'No matching name or plane found.'}
+    if (!results) res.locals.list = 'No matching name or plane found.'
     res.locals.list = results;
     return next();
   })
