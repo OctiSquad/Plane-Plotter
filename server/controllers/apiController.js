@@ -2,59 +2,30 @@
 const Plane = require('../models/planeModels');
 const APIKEY = '3bea41ccbcf41df820d44466a53faf43';
 const APIURI = 'http://api.aviationstack.com/v1/';
-// const got = require('got');
-// const { pipeline } = require('stream');
 const axios = require('axios');
 
 // Real-Time Flights
-
-// https://api.aviationstack.com/v1/flights
-// ? access_key = YOUR_ACCESS_KEY
-// `${APIURI}flights?access_key=${APIKEY}`
-
-// // optional parameters:
-
-// & limit = 100
-// & offset = 0
-// & callback = MY_CALLBACK
-// // more parameters available
-
-// async fetchAPI (req, res) {
-//   const dataStream = got.stream({
-//       uri: 'http://www.giantbomb.com/api/search',
-//       qs: {
-//         api_key: '123456',
-//         query: 'World of Warcraft: Legion'
-//       }
-//   });
-//   pipeline(dataStream, res, (err) => {
-//       if (err) {
-//           console.log(err);
-//           res.sendStatus(500);
-//       }
-//   });
-// });
-
 // flights > aircraft > registration = flights[aircraft][registration]
 
 const apiController = {
   async fetchAPI(req, res, next) {
     axios
-      .get(`${APIURI}flights?access_key=${APIKEY}`)
+      // .get(`${APIURI}flights?access_key=${APIKEY}`)
+      .get(`${APIURI}airplanes?access_key=${APIKEY}`)
+
       .then((response) => {
         const apiResponse = response.data;
-
-        if (Array.isArray(apiResponse['data'])) {
-          apiResponse['data'].forEach((flight) => {
-            // if (!flight['live']['is_ground']) {
-            console.log(
-              `${flight['airline']['name']} flight ${flight['flight']['iata']}`,
-              `from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
-              `to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air. }`
-            );
-            // }
-          });
-        }
+        // if (Array.isArray(apiResponse['data'])) {
+        //   apiResponse['data'].forEach((flight) => {
+        //     // if (!flight['live']['is_ground']) {
+        //     console.log(
+        //       `${flight['airline']['name']} flight ${flight['flight']['iata']}`,
+        //       `from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
+        //       `to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air. }`
+        //     );
+        //     // }
+        //   });
+        // }
         res.locals.fetched = apiResponse;
         return next();
       })
