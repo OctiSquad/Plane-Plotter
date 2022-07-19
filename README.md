@@ -59,7 +59,7 @@ That being said, we forged onward, populating a MongoDB database with informatio
 
 # Tech Stack
 
-PPPP utilizes only a few core technologies, in the hopes that it could potentially have the capacity to expand greatly in scale/scope.
+PPPP utilizes only a few core technologies in the hopes that it could potentially have the capacity to expand greatly in scale/scope.
 
 ## Frontend:
 - React-Redux w/ redux toolkit (RTK), RTK being a boilerplate handler and collection of extremely useful middleware, drastically reducing the amount of redux boilerplate to write if you understand how. A key example of this boiler plate distillation is the file "client/reducers/data.Slice.js", where actions, action types, and reducers are all created in the body of a createSlice function that gets exported.
