@@ -1,13 +1,12 @@
 //----------Initial Setup----------
 const path = require('path');
 const express = require('express');
-const apiRouter = require('./routes/apiRouter');
-
 const app = express();
 
 const PORT = 3000;
-const Router = express.Router();
 const Controller = require('./controllers');
+
+const apiRouter = require('./routes/apiRouter');
 
 // parse request body
 app.use(express.urlencoded({ extended: true }));
