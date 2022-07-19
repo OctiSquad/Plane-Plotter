@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Plane = require('./Model');
 
+// the only controller being used here is Controller.find for the time being
+
 const Controller = {
   async createData(req, res, next) {
     try {
@@ -19,17 +21,6 @@ const Controller = {
       return next(err);
     }
   },
-
-  // async getPlane(req, res, next) {
-  //   try {
-  //     const planeinDB = await Plane.find({ name: req.params.name });
-  //     if (!planeinDB) throw new Error();
-  //     res.locals.planeinDB = planeinDB;
-  //     return next();
-  //   } catch (err) {
-  //     return next(err);
-  //   }
-  // },
 
   async updatePlane(req, res, next) {
     try {
@@ -59,35 +50,10 @@ const Controller = {
   },
 };
 
-// userController.createPlane = (req, res, next) => {
-//   const { name, registration } = req.query; // id ????
-
-//   Plane.create({
-
-//   })
-//     .then(inputDoc => {
-//       res.locals.plane= inputDoc;
-//       return next();
-//     })
-//     .catch(err => {
-//       return next({
-//         log: `userController.createUser: ERROR: ${ err }`,
-//         message: { err: 'Error occurred in controllers.createPlane - Check server logs for more details'}
-//       });
-//     });
-// };
-
-// userController.getAllUsers = (req, res, next) => {
-//   User.find({}, (err, users) => {
-//     if (err) return next('Error in userController.getAllUsers: ' + JSON.stringify(err));
-//     res.locals.users = users;
-//     return next();
-//   });
-// };
-
 Controller.find = (req, res, next) => {
   const filter = req.params.id;
   Plane.find(
+    // this is what lets you plug in either the name or registration in mongoose 
     { $or: [{ name: filter }, { registration: filter }] },
     (err, results) => {
       // Plane.find({ name: filter }), (err,results) =>{
@@ -101,31 +67,5 @@ Controller.find = (req, res, next) => {
     }
   );
 };
-
-Controller.findPlane = (req, res, next) => {
-  const registration = req.params.id; // id?
-  Plane.find({}, (err, result) => {
-    if (err)
-      return next('Error in userController.findPlane: ' + JSON.stringify(err));
-    if (!result) {
-      console.log('No plane found');
-      return next();
-    } else {
-      console.log('Plane found!');
-      // CHANGE TO INCLUDE USER SAVE DATA
-      // console.log(result);
-      res.locals.plane = result;
-      return next();
-    }
-  });
-};
-
-// userController.updateUser = (req, res, next) => {
-
-// };
-
-// userController.deleteUser = (req, res, next) => {
-
-// };
 
 module.exports = Controller;

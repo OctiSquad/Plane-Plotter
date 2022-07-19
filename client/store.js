@@ -1,12 +1,10 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
-// import { composeWithDevTools } from '@reduxjs/toolkit'
 
 import { apiSlice } from './reducers/apiSlice'
 import dataReducer from './reducers/data.Slice'
 
-
-
+// the configuration process for this file, the power of configureStore as a method, and the explanation of getDefaultMiddleware are in RTK documentation 
 export const store = configureStore({
   reducer: {
     data: dataReducer,
@@ -14,11 +12,10 @@ export const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    // enables caching, invalidation, polling, and other useful rtk-query features
+    // enables caching, invalidation, polling, and other useful RTKQuery features
     getDefaultMiddleware().concat(apiSlice.middleware),
   devTools: true,
-  // enhancers: [devToolsEnhancer({ realtime: true })],
 })
 
-// required for refetchOnFocus and refetchOnReconnect behaviors
+// required for refetchOnFocus and refetchOnReconnect behaviors, which we don't utilize yet but should
 setupListeners(store.dispatch);
