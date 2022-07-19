@@ -69,7 +69,7 @@ PPPP utilizes only a few core technologies for hope that it could potentially ha
 
 ## Backend: 
 - Node-Express is all we know when it comes to handling APIs and the backend of web applications.
-- MongoDB object modeling for Node.js. "Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box." What more is there to say?
+- Mongoose is MongoDB object modeling for Node.js. "Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box." What more is there to say?
 - *Unused: Axios. Our API controller in "server/controllers/apiController.js" - before we switched over to using dummy data we input into the MongoDB database we used ourselves - used axios to handle making HTTP requests, for the sake of getting experience with another common tool to handle making these requests.
 
 --- 
