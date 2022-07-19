@@ -79,13 +79,13 @@ PPPP utilizes only a few core technologies for hope that it could potentially ha
 Below are some diagrams to illuminate how we were thinking about our data flow, our file architecture for redux (highlighting how RTK changes things), and our original vision for the client, including the stretch feature of the google map API implementation, which we simply didn't have enough time to implement cleanly.
 
 ## Data Flow
-![Image](docs/dataflow.png)
+![Image](./docs/dataflow.png)
 
 ## Redux Architecture
-![Image](docs/redux.png)
+![Image](./docs/redux.png)
 
 ## Client
-![Image](docs/client.png)
+![Image](./docs/client.png)
 
 ---
 
