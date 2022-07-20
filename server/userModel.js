@@ -9,14 +9,12 @@ const pool = new Pool({
 
 const queryString = `
 CREATE TABLE accountinfo (
-  Username varchar(255),
+  Username varchar(255) UNIQUE,
   Password varchar(255)
 );
 `;
 
-pool.query(queryString, (err, result) => {
-  console.log('Finished Creating Account');
-});
+pool.query(queryString, (err, result) => {});
 
 module.exports = {
   query: (text, params, callback) => {

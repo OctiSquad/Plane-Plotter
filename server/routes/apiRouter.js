@@ -7,8 +7,13 @@ const apiController = require('../controllers/apiController');
 const userController = require('../controllers/userController');
 
 //----------Routers to Controllers----------
-router.post('/signup', userController.signUp, (req, res) => {
+router.post('/signup', userController.signup, (req, res) => {
   return res.status(200).send('Account created.');
+});
+
+router.post('/login', userController.verifyUser, (req, res) => {
+  // return res.status(200).redirect('/');
+  return res.status(200).send('Logged in');
 });
 
 router.get('/fetch', apiController.fetchAPI, (req, res) => {
