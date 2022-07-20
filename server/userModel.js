@@ -7,6 +7,17 @@ const pool = new Pool({
   connectionString: PG_URL,
 });
 
+const queryString = `
+CREATE TABLE accountinfo (
+  Username varchar(255),
+  Password varchar(255)
+);
+`;
+
+pool.query(queryString, (err, result) => {
+  console.log('Finished Creating Account');
+});
+
 module.exports = {
   query: (text, params, callback) => {
     console.log('executed query', text);

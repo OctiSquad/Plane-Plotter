@@ -4,11 +4,12 @@ const router = express.Router();
 
 // require in controller when we have a MW function
 const apiController = require('../controllers/apiController');
+const userController = require('../controllers/userController');
 
 //----------Routers to Controllers----------
-// router.post('/signup', apiController.signup, (req, res) => {
-//   return res.status(200).json(res.locals.fetched);
-// });
+router.post('/signup', userController.signUp, (req, res) => {
+  return res.status(200).send('Account created.');
+});
 
 router.get('/fetch', apiController.fetchAPI, (req, res) => {
   return res.status(200).json(res.locals.fetched);
