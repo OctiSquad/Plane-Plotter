@@ -4,12 +4,12 @@ const userController = {};
 
 userController.signup = (req, res, next) => {
   const queryString = `
-  INSERT INTO accountinfo(username, password)
+  INSERT INTO Users(username, password)
   VALUES('${req.body.username}','${req.body.password}') RETURNING *
 `;
   db.query(queryString, (err, result) => {
     if (err) {
-      console.log(err, 'Caught add character error');
+      console.log(err, 'Caught signup error');
       return next(err);
     }
     // console.log('Finished Creating Account');

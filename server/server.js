@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 const PORT = 3000;
-const Controller = require('./controllers');
+// const Controller = require('./controllers');
 
 const apiRouter = require('./routes/apiRouter');
 
@@ -14,10 +14,6 @@ app.use(express.json());
 
 //----------Router----------
 app.use('/api', apiRouter);
-
-apiRouter.get('/planes/:id', Controller.find, (req, res) => {
-  res.status(200).send(res.locals.list);
-});
 
 // catch-all route handler
 app.use((req, res) =>
