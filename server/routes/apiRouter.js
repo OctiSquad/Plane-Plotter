@@ -6,6 +6,9 @@ const router = express.Router();
 const apiController = require('../controllers/apiController');
 
 //----------Routers to Controllers----------
+// router.post('/signup', apiController.signup, (req, res) => {
+//   return res.status(200).json(res.locals.fetched);
+// });
 
 router.get('/fetch', apiController.fetchAPI, (req, res) => {
   return res.status(200).json(res.locals.fetched);
