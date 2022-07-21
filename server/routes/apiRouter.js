@@ -16,8 +16,13 @@ router.post('/login', userController.verifyUser, (req, res) => {
   return res.status(200).send('Logged in');
 });
 
-router.get('/history', apiController.find, (req, res) => {
+router.get('/history', apiController.history, (req, res) => {
   return res.status(200).json(res.locals.flightHistory);
+});
+
+router.post('/search', apiController.search, (req, res) => {
+  // return res.status(200).redirect('/');
+  return res.status(200).json(res.locals.searchResult);
 });
 
 // router.get('/fetch', apiController.fetchAPI, (req, res) => {

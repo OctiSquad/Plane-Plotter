@@ -65,3 +65,18 @@ module.exports = {
 // `;
 
 // pool.query(queryString, (err, result) => {});
+
+////////
+// CREATE TABLE public.FLIGHTS (
+// 	SearchID serial NOT NULL,
+// 	Registration varchar(255) NOT NULL,
+// 	HEXICAO24 varchar(255) NOT NULL,
+// 	Person varchar(255) NOT NULL,
+// 	DepartureLoc varchar(255) NOT NULL,
+// 	ArrivalLoc varchar(255) NOT NULL,
+// 	Date varchar NOT NULL,
+//         Searcher varchar(17));
+
+// CREATE TABLE public.USERS (
+// 	Username varchar(17) NOT NULL UNIQUE,
+// 	Password varchar(52) NOT NULL);
